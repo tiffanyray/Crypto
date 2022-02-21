@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "DsJ+qTgH5J6mlmfDFL16jSDc9C5LTVdyzKmlfmtLH08AvnRoCm/rCvOD6qJY4Rna7Ftiqcs0Rx/e6rdi87LXfg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tiffa\\Documents\\Projects\\Crypto\\Persistence\\Persistence.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tiffa\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\tiffa\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "fVDlGxjS48TlSpjQ4i0NkO9/ZKK8QufXtNwYzv1XSMKc4NYdZap6wvxs5nE9dZ1lNjG/cOoB9gVrdKprOTS3XQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tiffa\\Documents\\Projects\\Crypto\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tiffa\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\tiffa\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
