@@ -1,21 +1,7 @@
 ﻿import * as React from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {RadioButton, TextInput} from "react-native-paper";
-
-const isNum = (x) => {
-  return !Number.isNaN(x) && !Number.isNaN(parseNum(x));
-}
-const parseNum = (x) => {
-  return parseFloat(x);
-}
-
-const valOrFalse = (x) => {
-  return isNum(x) && parseNum(x);
-}
-
-const numRetVal = (x) => {
-  return x ? `${x}` : "";
-}
+import {numRetVal, valOrFalse} from "../utils/Numbers";
 
 // TODO: Need to be able to return a value .
 const reducer = (state, action) => {
