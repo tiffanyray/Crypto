@@ -134,7 +134,10 @@ const reducer = (state, action) => {
           coinBuy = usdBuy / quantity;
         
       } else if (profitChanges === profitChangesOptions.quantity) {
-        quantity = profitLoss / (usdSell - usdBuy);
+        let perCoinProfitLoss = coinSell - coinBuy;
+        quantity = profitLoss / (perCoinProfitLoss);
+        usdBuy = coinBuy * quantity;
+        usdSell = coinSell * quantity;
       }
 
       return {
