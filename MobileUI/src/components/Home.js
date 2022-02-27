@@ -14,6 +14,10 @@ export const Home = ({navigation}) => {
         title={"Cost Basis"}
         onPress={() => navigation.navigate(pages.costBasis)}
       />
+      <Button
+        title={"Portfolio's"}
+        onPress={() => navigation.navigate(pages.portfolios)}
+      />
     </View>
   )
 }

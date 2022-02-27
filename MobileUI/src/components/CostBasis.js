@@ -2,6 +2,7 @@
 import {Text} from 'react-native';
 import {Button, List, Modal, Portal, Provider, TextInput} from "react-native-paper";
 import {parseNum} from "../utils/Numbers";
+import {useModal} from "../hooks/useModal";
 
 // Questions
 // 1.) Do I want the add new cost to be on a different page?? Like navigate you to a new page?? If so, I need to either, add a store or contextAPI...
@@ -76,6 +77,8 @@ const actions = {
 const addIndexVal = -1;
 
 // interesting idea. Be able to select which ones you want active in the calculations.
+// list might look better if we either, have a name for the asset. Or use a date.
+// hmmm. I think we need the ability to have a portfolio. So that we can separate out different coins but still have the ability to view this aggregate no matter what. 
 export const CostBasis = ({}) => {
   const [state, dispatch] = React.useReducer(reducer, {
     assets: [{
@@ -96,9 +99,9 @@ export const CostBasis = ({}) => {
     }
   })
 
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const modal = useModal();
   const getModalObject = (index) => {
-    if (index === -1) {
+    if (index == addIndexVal) {
       //empty object
       return {
         index: `${addIndexVal}`,
@@ -113,18 +116,11 @@ export const CostBasis = ({}) => {
     };
   }
   
-  const addAsset = () => {
-    showModal();
-    dispatch({type: actions.setTempRecord, value: getModalObject(-1)});
-  }
-  
-  const editAsset = (index) => {
-    showModal();
+  const addEditAsset = (index) => {
+    modal.open();
     dispatch({type: actions.setTempRecord, value: getModalObject(index)});
   }
   
-  const showModal = () => setModalVisible(true);
-  const hideModal = () => setModalVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 20};
 
   const getAverageCost = (assets) => {
@@ -148,7 +144,7 @@ export const CostBasis = ({}) => {
   // (doesn't include any fees unless you add in your fees to the usdPrice.)
   return <Provider>
     <Portal>
-      <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+      <Modal visible={modal.visible} onDismiss={modal.close} contentContainerStyle={containerStyle}>
         <Text>This is the edit/add modal.</Text>
         <TextInput
           label="Coin Quantity"
@@ -167,20 +163,20 @@ export const CostBasis = ({}) => {
             type: actions.commitTempRecord,
             value: state.tempRecord
           })
-          hideModal();
+          modal.close();
         }}>{state.tempRecord.index == addIndexVal ? "Add" : "Edit"}</Button>
       </Modal>
     </Portal>
     <Text>Average Cost Basis: {state.averageCostBasis}</Text>
-    <Button onPress={addAsset}>Add Asset</Button>
+    <Button onPress={() => addEditAsset(addIndexVal)}>Add Asset</Button>
     {
-      state?.assets?.map((asset, index) => {
+      state?.assets?.length > 0 && state?.assets?.map((asset, index) => {
         return <List.Section key={index}>
           <List.Accordion
             title={`USD Price: ${asset.usdPrice}`}
             left={() => <Text>{asset.quantity} -</Text>}
           >
-            <List.Item title="Edit" onPress={() => editAsset(index)}></List.Item>
+            <List.Item title="Edit" onPress={() => addEditAsset(index)}></List.Item>
             <List.Item title="Active"></List.Item>
           </List.Accordion>
         </List.Section>
