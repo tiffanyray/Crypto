@@ -99,7 +99,7 @@ export const CostBasis = ({}) => {
     }
   })
 
-  const modal = useModal();
+  const modal = useModal(false);
   const getModalObject = (index) => {
     if (index == addIndexVal) {
       //empty object
