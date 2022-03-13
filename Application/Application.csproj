@@ -9,9 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract" />
-    <Folder Include="Communication" />
-    <Folder Include="Concrete" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
 </Project>

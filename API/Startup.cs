@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
+using Application.Abstract;
+using Application.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
+using Persistence.Abstract;
+using Persistence.Concrete;
 
 namespace API
 {
@@ -37,6 +41,11 @@ namespace API
                 opts.UseSqlServer(_config.GetConnectionString("MyConnection"));
             });
             services.AddIdentityService(_config);
+
+            services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+            services.AddScoped<IPortfolioService, PortfolioService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
