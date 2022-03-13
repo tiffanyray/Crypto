@@ -10,5 +10,9 @@ namespace Persistence
         {
             
         }
+        
+        public DbSet<Portfolio> Portfolios { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Crypto> Cryptos { get; set; }
     }
 }
