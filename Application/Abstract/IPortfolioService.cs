@@ -10,6 +10,7 @@ namespace Application.Abstract
     public interface IPortfolioService
     {
         public Task<IEnumerable<Portfolio>> GetAllAsync();
+        public Task<IEnumerable<Portfolio>> GetAllByUserIDAsync(string userId);
         public Task<PortfolioResponse> GetOneAsync(int portfolioId);
         public Task<PortfolioResponse> SaveAsync(Portfolio portfolio);
         public Task<PortfolioResponse> UpdateAsync(Portfolio portfolio);

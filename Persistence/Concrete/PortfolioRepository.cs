@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,11 @@ namespace Persistence.Concrete
         public async Task<IEnumerable<Portfolio>> GetAllAsync()
         {
             return await _context.Portfolios.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<Portfolio>> GetAllByUserIDAsync(string userId)
+        {
+            return await _context.Portfolios.Where(x => x.User.Id == userId).ToListAsync();
         }
 
         public async Task<Portfolio> FindByIdAsync(int portfolioId)

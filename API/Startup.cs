@@ -45,7 +45,9 @@ namespace API
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
             services.AddScoped<IPortfolioService, PortfolioService>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
