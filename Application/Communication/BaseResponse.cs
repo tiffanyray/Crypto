@@ -22,7 +22,7 @@ namespace Application.Communication
             Resource = resource;
         }
 
-        protected BaseResponse(string message)
+        protected BaseResponse(bool success, string message)
         {
             Success = false;
             Message = message;

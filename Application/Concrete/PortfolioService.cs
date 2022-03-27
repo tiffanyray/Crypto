@@ -38,13 +38,13 @@ namespace Application.Concrete
                 var portfolio = await _portfolioRepository.FindByIdAsync(portfolioId);
 
                 if (portfolio == null)
-                    return new PortfolioResponse(new NotFoundMessage(entName).Message);
+                    return new PortfolioResponse(false, new NotFoundMessage(entName).Message);
 
                 return new PortfolioResponse(portfolio);
             }
             catch (Exception error)
             {
-                return new PortfolioResponse(new ErrorMessage(
+                return new PortfolioResponse(false, new ErrorMessage(
                     CrudActions.Getting.ToString(),
                     entName,
                     error.Message
@@ -63,7 +63,7 @@ namespace Application.Concrete
             }
             catch (Exception error)
             {
-                return new PortfolioResponse(new ErrorMessage(
+                return new PortfolioResponse(false, new ErrorMessage(
                     CrudActions.Saving.ToString(),
                     entName,
                     error.Message
@@ -77,7 +77,7 @@ namespace Application.Concrete
             {
                 var existing = await _portfolioRepository.FindByIdAsync(portfolio.Id);
                 if (existing == null)
-                    return new PortfolioResponse(new NotFoundMessage(entName).Message);
+                    return new PortfolioResponse(false, new NotFoundMessage(entName).Message);
 
                 existing.Name = portfolio.Name;
                 existing.Description = portfolio.Description;
@@ -92,7 +92,7 @@ namespace Application.Concrete
             }
             catch (Exception error)
             {
-                return new PortfolioResponse(new ErrorMessage(
+                return new PortfolioResponse(false, new ErrorMessage(
                     CrudActions.Updating.ToString(),
                     entName,
                     error.Message
@@ -106,7 +106,7 @@ namespace Application.Concrete
             {
                 var existing = await _portfolioRepository.FindByIdAsync(portfolioId);
                 if (existing == null)
-                    return new PortfolioResponse(new NotFoundMessage(entName).Message);
+                    return new PortfolioResponse(false, new NotFoundMessage(entName).Message);
 
                 _portfolioRepository.DeleteAsync(existing);
                 _unitOfWork.CompleteAsync();
@@ -114,7 +114,7 @@ namespace Application.Concrete
             }
             catch (Exception error)
             {
-                return new PortfolioResponse(new ErrorMessage(
+                return new PortfolioResponse(false, new ErrorMessage(
                     CrudActions.Deleting.ToString(),
                     entName,
                     error.Message

@@ -6,6 +6,6 @@ namespace Application.Communication.EntityResponses
     {
         public PortfolioResponse(bool success) : base(success) { }
         public PortfolioResponse(Portfolio portfolio) : base(portfolio) { }
-        public PortfolioResponse(string message) : base(message) { }
+        public PortfolioResponse(bool success, string message) : base(success, message) { }
     }
 }
