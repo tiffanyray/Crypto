@@ -20,6 +20,11 @@ const reducer = (state, action) => {
         ...state,
         tempDescription: val
       }
+    case actions.setTempRecord:
+      return {
+        ...state,
+        tempRecord: val
+      }
     case actions.commitTempRecord:
       let index = val?.index;
       let portfolio = {
@@ -79,6 +84,7 @@ export const Portfolios = () => {
   const modal = useModal({ startingVal: false });
   
   const getModalObject = (index) => {
+    console.log("Get modal objecr", index)
     if (index == addIndexVal) {
       return {
         index: addIndexVal,
@@ -101,7 +107,7 @@ export const Portfolios = () => {
   
   return <Provider>
     <Modal visible={modal.visible} onDismiss={modal.close}>
-      <Text>Add/Edit Modal</Text>
+      <Text>{state.tempRecord.index == addIndexVal ? "Add" : "Edit"} Modal</Text>
       <TextInput
         label="Name"
         value={`${state.tempRecord.name}`}

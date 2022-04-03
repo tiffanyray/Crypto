@@ -1,20 +1,20 @@
 ﻿import * as React from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {RadioButton, TextInput} from "react-native-paper";
-import {numRetVal, valOrFalse} from "../utils/Numbers";
+import {numRetVal, parseNumForUI} from "../utils/Numbers";
 
 const reducer = (state, action) => {
-  let quantity = valOrFalse(state.quantity);
-  let coinBuy = valOrFalse(state.coinBuy);
-  let coinSell = valOrFalse(state.coinSell);
-  let usdBuy = valOrFalse(state.usdBuy);
-  let usdSell = valOrFalse(state.usdSell);
-  let profitLoss = valOrFalse(state.profitLoss);
+  let quantity = parseNumForUI(state.quantity);
+  let coinBuy = parseNumForUI(state.coinBuy);
+  let coinSell = parseNumForUI(state.coinSell);
+  let usdBuy = parseNumForUI(state.usdBuy);
+  let usdSell = parseNumForUI(state.usdSell);
+  let profitLoss = parseNumForUI(state.profitLoss);
   let profitChanges = state.profitChanges;
     
   switch (action.type) {
     case actions.quantity:
-      quantity = valOrFalse(action.value);
+      quantity = parseNumForUI(action.value);
       
       if (quantity >= 0 && coinBuy >= 0)
         usdBuy = coinBuy * quantity;
@@ -35,7 +35,7 @@ const reducer = (state, action) => {
       };
       
     case actions.coinBuy:
-      coinBuy = valOrFalse(action.value);
+      coinBuy = parseNumForUI(action.value);
       
       if (quantity >= 0 && coinBuy >= 0)
         usdBuy = coinBuy * quantity;
@@ -53,7 +53,7 @@ const reducer = (state, action) => {
       }
       
     case actions.usdBuy:
-      usdBuy = valOrFalse(action.value);
+      usdBuy = parseNumForUI(action.value);
       
       if (usdBuy >= 0 && coinBuy >= 0)
         quantity = usdBuy / coinBuy;
@@ -73,7 +73,7 @@ const reducer = (state, action) => {
       };
       
     case actions.coinSell:
-      coinSell = valOrFalse(action.value);
+      coinSell = parseNumForUI(action.value);
       
       if (coinSell >= 0 && quantity >= 0)
         usdSell = coinSell * quantity;
@@ -89,7 +89,7 @@ const reducer = (state, action) => {
       };
       
     case actions.usdSell:
-      usdSell = valOrFalse(action.value);
+      usdSell = parseNumForUI(action.value);
       
       if (usdBuy >= 0 && usdSell >= 0)
         profitLoss = usdSell - usdBuy;
@@ -104,7 +104,7 @@ const reducer = (state, action) => {
       };
       
     case actions.profitLoss:
-      profitLoss = valOrFalse(action.value);
+      profitLoss = parseNumForUI(action.value);
       
       if (profitChanges === profitChangesOptions.sell) {
         usdSell = profitLoss + usdBuy;

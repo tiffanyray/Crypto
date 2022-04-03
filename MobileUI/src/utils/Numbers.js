@@ -1,7 +1,12 @@
 ﻿export const isNum = (x) => {
   return !Number.isNaN(x) && !Number.isNaN(parseNum(x));
 }
+
 export const parseNum = (x) => {
+  return parseFloat(x);
+}
+
+export const parseNumForUI = (x) => {
   let value = x.replace(/[^\d.]/g, '');
   if (value > 0) {
     //trim leading 0s
@@ -12,7 +17,7 @@ export const parseNum = (x) => {
 }
 
 export const valOrFalse = (x) => {
-  return isNum(x) && parseNum(x);
+  return isNum(x) && parseNumForUI(x);
 }
 
 export const numRetVal = (x) => {
