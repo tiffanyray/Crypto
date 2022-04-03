@@ -3,7 +3,6 @@ import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {RadioButton, TextInput} from "react-native-paper";
 import {numRetVal, valOrFalse} from "../utils/Numbers";
 
-// TODO: Need to be able to return a value .
 const reducer = (state, action) => {
   let quantity = valOrFalse(state.quantity);
   let coinBuy = valOrFalse(state.coinBuy);
@@ -162,7 +161,7 @@ const profitChangesOptions = {
 
 export const Calculator = () => {
   const [state, dispatch] = React.useReducer(reducer, {
-    quantity: "0",
+    quantity: "n4.47",
     coinBuy: "0",
     usdBuy: "0",
     coinSell: "0",
