@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using API.RequestDtos;
 using API.ResponseDtos;
 using AutoMapper;
@@ -13,6 +14,10 @@ namespace API.Mappings
             CreateMap<PortfolioRequest, Portfolio>();
             CreateMap<Portfolio, PortfolioResponse>();
             CreateMap<List<Portfolio>, List<PortfolioResponse>>();
+
+            CreateMap<TransactionRequest, Transaction>();
+            CreateMap<Transaction, TransactionResponse>();
+            CreateMap<IEnumerable<Transaction>, List<TransactionResponse>>();
         }
     }
 }

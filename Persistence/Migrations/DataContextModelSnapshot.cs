@@ -84,12 +84,17 @@ namespace Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PortfolioId")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("UsdPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CryptoId");
+
+                    b.HasIndex("PortfolioId");
 
                     b.ToTable("Transactions");
                 });
@@ -326,7 +331,13 @@ namespace Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("CryptoId");
 
+                    b.HasOne("Domain.Entities.Portfolio", "Portfolio")
+                        .WithMany("Transactions")
+                        .HasForeignKey("PortfolioId");
+
                     b.Navigation("Crypto");
+
+                    b.Navigation("Portfolio");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -378,6 +389,11 @@ namespace Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Portfolio", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

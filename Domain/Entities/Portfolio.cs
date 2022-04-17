@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
@@ -9,5 +10,6 @@ namespace Domain.Entities
         public string Description { get; set; }
         public Crypto Crypto { get; set; }
         public User User { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }
