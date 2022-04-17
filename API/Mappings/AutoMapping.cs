@@ -18,6 +18,10 @@ namespace API.Mappings
             CreateMap<TransactionRequest, Transaction>();
             CreateMap<Transaction, TransactionResponse>();
             CreateMap<IEnumerable<Transaction>, List<TransactionResponse>>();
+
+            CreateMap<CryptoRequest, Crypto>();
+            CreateMap<Crypto, CryptoResponse>();
+            CreateMap<IEnumerable<Crypto>, List<CryptoResponse>>();
         }
     }
 }
