@@ -5,6 +5,7 @@
     <explicitIncludes>
       <Path>Infrastructure/Security</Path>
       <Path>MobileUI</Path>
+      <Path>UI</Path>
     </explicitIncludes>
     <explicitExcludes />
   </component>

@@ -106,7 +106,8 @@ export const Portfolios = () => {
   }
   
   return <Provider>
-    <Modal visible={modal.visible} onDismiss={modal.close}>
+    <Modal visible={modal.visible} onDismiss={modal.close}
+    >
       <Text>{state.tempRecord.index == addIndexVal ? "Add" : "Edit"} Modal</Text>
       <TextInput
         label="Name"
