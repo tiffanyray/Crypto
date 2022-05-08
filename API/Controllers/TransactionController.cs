@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.RequestDtos;
 using API.ResponseDtos;
@@ -20,20 +21,28 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<TransactionResponse>> GetAll()
+        [HttpGet]
+        [Route("all")]
+        [ProducesResponseType(typeof(List<Transaction>), 200)]
+        public async Task<ActionResult<Transaction>> GetAll()
         {
             var transactions = await _transactionService.GetAllAsync();
-            var mapped = _mapper.Map<IEnumerable<Transaction>, List<TransactionResponse>>(transactions);
-            return Ok(mapped);
+            return Ok(transactions.ToList());
         }
-
-        public async Task<ActionResult<TransactionResponse>> GetAllByUserId(string userId)
+        
+        [HttpGet]
+        [Route("allbyuserid")]
+        [ProducesResponseType(typeof(List<Transaction>), 200)]
+        public async Task<ActionResult<Transaction>> GetAllByUserId(string userId)
         {
             var transactions = await _transactionService.GetAllByUserIDAsync(userId);
-            var mapped = _mapper.Map<IEnumerable<Transaction>, List<TransactionResponse>>(transactions);
-            return Ok(mapped);
+            return Ok(transactions.ToList());
         }
 
+        [HttpGet]
+        [Route("one")]
+        [ProducesResponseType(typeof(TransactionResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> GetOneById(int id)
         {
             var transaction = await _transactionService.GetOneAsync(id);
@@ -44,6 +53,10 @@ namespace API.Controllers
             return Ok(mapped);
         }
 
+        [HttpPost]
+        [Route("create")]
+        [ProducesResponseType(typeof(TransactionResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> CreateAsync(TransactionRequest transaction)
         {
             var mapRequest = _mapper.Map<TransactionRequest, Transaction>(transaction);
@@ -55,6 +68,10 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
 
+        [HttpPut]
+        [Route("update")]
+        [ProducesResponseType(typeof(TransactionResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> UpdateAsync(TransactionRequest transaction)
         {
             var mapRequest = _mapper.Map<TransactionRequest, Transaction>(transaction);
@@ -66,6 +83,10 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
 
+        [HttpDelete]
+        [Route("delete")]
+        [ProducesResponseType(typeof(OkResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> DeleteAsync(TransactionRequest transaction)
         {
             var mapRequest = _mapper.Map<TransactionRequest, Transaction>(transaction);

@@ -38,14 +38,22 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen();
-            
             services.AddDbContext<DataContext>(opts =>
             {
                 opts.UseSqlServer(_config.GetConnectionString("MyConnection"));
             });
+            
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                });
+            });
 
+            services.AddControllers();
+            services.AddSwaggerGen();
+            
             var builder = services.AddIdentityCore<User>();
             var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
             identityBuilder.AddEntityFrameworkStores<DataContext>();
@@ -64,6 +72,12 @@ namespace API
 
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
             services.AddScoped<IPortfolioService, PortfolioService>();
+
+            services.AddScoped<ICryptoService, CryptoService>();
+            services.AddScoped<ICryptoRepository, CryptoRepository>();
+
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -84,6 +98,7 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

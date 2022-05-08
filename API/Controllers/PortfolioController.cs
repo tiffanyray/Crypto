@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.RequestDtos;
 using API.ResponseDtos;
@@ -21,13 +22,12 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("all")]
-        [ProducesResponseType(typeof(List<PortfolioResponse>), 200)]
-        public async Task<ActionResult<List<PortfolioResponse>>> GetAllByUserId(string userId)
+        [ProducesResponseType(typeof(List<Portfolio>), 200)]
+        public async Task<ActionResult<List<Portfolio>>> GetAllByUserId(string userId)
         {
             var portfolios = await _portfolioService.GetAllAsync();
-            var mappedPortfolios = _mapper.Map<IEnumerable<Portfolio>, List<PortfolioResponse>>(portfolios);
 
-            return mappedPortfolios;
+            return portfolios.ToList();
         }
 
         [HttpGet]

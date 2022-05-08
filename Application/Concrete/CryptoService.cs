@@ -64,7 +64,7 @@ namespace Application.Concrete
         {
             try
             {
-                var existing = _cryptoRepository.GetOneByName(crypto.Name);
+                var existing = await _cryptoRepository.GetOneByName(crypto.Name);
                 if (existing != null)
                     return new CryptoResponse(false, entName + " already exist ");
 
@@ -84,7 +84,7 @@ namespace Application.Concrete
         {
             try
             {
-                var existing = _cryptoRepository.GetOneByName(crypto.Name);
+                var existing = await _cryptoRepository.GetOneByName(crypto.Name);
                 if (existing != null)
                     return new CryptoResponse(false, entName + " already exist ");
 
@@ -107,9 +107,9 @@ namespace Application.Concrete
         {
             try
             {
-                var existing = _cryptoRepository.GetOneByName(crypto.Name);
-                if (existing != null)
-                    return new CryptoResponse(false, entName + " already exist ");
+                var existing = await _cryptoRepository.GetOneByName(crypto.Name);
+                if (existing == null)
+                    return new CryptoResponse(false, entName + " does not exist ");
 
                 _cryptoRepository.Delete(crypto);
                 await _unitOfWork.CompleteAsync();

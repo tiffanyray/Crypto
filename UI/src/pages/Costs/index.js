@@ -1,6 +1,9 @@
-﻿import {IonContent, IonPage} from "@ionic/react";
+﻿import {IonContent} from "@ionic/react";
 import {Header} from "../../components/Header";
 
 export const Costs = () => {
-  return <IonContent fullscreen>Home</IonContent>
+  return <IonContent fullscreen>
+    <Header/>
+    Home
+  </IonContent>
 }

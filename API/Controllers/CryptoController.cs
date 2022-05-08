@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using API.RequestDtos;
 using API.ResponseDtos;
 using Application.Abstract;
@@ -19,12 +20,19 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        [Route("all")]
+        [ProducesResponseType(typeof(List<CryptoResponse>), 200)]
         public async Task<IActionResult> GetAll()
         {
             var cryptos = await _cryptoService.GetAll();
             return Ok(cryptos);
         }
 
+        [HttpGet]
+        [Route("one")]
+        [ProducesResponseType(typeof(CryptoResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> GetById(int id)
         {
             var crypto = await _cryptoService.GetById(id);
@@ -35,6 +43,10 @@ namespace API.Controllers
             return Ok(map);
         }
 
+        [HttpPost]
+        [Route("create")]
+        [ProducesResponseType(typeof(CryptoResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> Create(CryptoRequest crypto)
         {
             var mapRequest = _mapper.Map<CryptoRequest, Crypto>(crypto);
@@ -46,6 +58,10 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
 
+        [HttpPut]
+        [Route("update")]
+        [ProducesResponseType(typeof(CryptoResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> Update(CryptoRequest crypto)
         {
             var mapRequest = _mapper.Map<CryptoRequest, Crypto>(crypto);
@@ -57,6 +73,10 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
 
+        [HttpDelete]
+        [Route("delete")]
+        [ProducesResponseType(typeof(OkResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> Delete(CryptoRequest crypto)
         {
             var mapRequest = _mapper.Map<CryptoRequest, Crypto>(crypto);

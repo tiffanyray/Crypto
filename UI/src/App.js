@@ -18,14 +18,20 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
+/* Toast */
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {Navigation} from "./navigation";
 
 setupIonicReact();
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <IonApp>
       <Navigation />
+      <ToastContainer />
     </IonApp>
   );
 };

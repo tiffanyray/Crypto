@@ -1,16 +1,18 @@
 ﻿import {IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar} from "@ionic/react";
 import {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
 import {getPage} from "../navigation";
+import {useRouteMatch} from "react-router";
+import {useLocation} from "react-router";
 
 export const Header = () => {
   let location = useLocation();
+  let routeMatch = useRouteMatch();
   const [page, setPage] = useState({});
   
   useEffect(() =>{
-    let newPage = getPage(location.pathname);
+    let newPage = getPage(routeMatch.path);
     setPage(newPage)
-  }, [location])
+  }, [routeMatch])
   
   return (
     <IonHeader>
