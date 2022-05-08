@@ -1,9 +1,11 @@
-﻿import {IonContent} from "@ionic/react";
+﻿import {IonButton, IonContent} from "@ionic/react";
 import {Header} from "../../components/Header";
 
 export const Portfolio = () => {
   return (<IonContent>
-    <Header />
+    <Header>
+      <IonButton>Add</IonButton>
+    </Header>
     Portfolio
   </IonContent>)
 }

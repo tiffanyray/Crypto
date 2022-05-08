@@ -4,11 +4,11 @@ import {Route} from "react-router-dom";
 import {IonReactRouter} from "@ionic/react-router";
 import {albumsOutline, calculatorOutline, cashOutline, folderOutline, homeOutline} from "ionicons/icons";
 import {Calculator} from "../pages/Calculator";
-import {Costs} from "../pages/Costs";
 import {Portfolios} from "../pages/Portfolios";
 import {Home} from "../pages/Home";
 import {Header} from "../components/Header";
 import {Portfolio} from "../pages/Portfolio";
+import {EditPortfolio} from "../pages/EditPortfolio";
 
 export const pages = {
   home: {
@@ -27,14 +27,14 @@ export const pages = {
     mdIcon: calculatorOutline,
     inMenu: true
   },
-  cost: {
-    title: 'Cost Basis',
-    url: '/costBasis',
-    link: '/costBasis',
-    iosIcon: cashOutline,
-    mdIcon: cashOutline,
-    inMenu: true
-  },
+  // cost: {
+  //   title: 'Cost Basis',
+  //   url: '/costBasis',
+  //   link: '/costBasis',
+  //   iosIcon: cashOutline,
+  //   mdIcon: cashOutline,
+  //   inMenu: true
+  // },
   portfolios: {
     title: 'Portfolios',
     url: '/portfolios',
@@ -42,6 +42,22 @@ export const pages = {
     iosIcon: albumsOutline,
     mdIcon: albumsOutline,
     inMenu: true
+  },
+  editPortfolio: {
+    title: 'Edit Portfolio',
+    url: '/editPortfolio/:id',
+    link: '/editPortfolio/',
+    iosIcon: albumsOutline,
+    mdIcon: albumsOutline,
+    inMenu: false
+  },
+  addPortfolio: {
+    title: "Add Portfolio",
+    url: "/addPortfolio",
+    link: "/addPortfolio/",
+    iosIcon: albumsOutline,
+    mdIcon: albumsOutline,
+    inMenu: false
   },
   portfolio: {
     title: "Portfolio",
@@ -78,11 +94,14 @@ export const Navigation = () => {
           <Route path={pages.calculator.url} exact={true}>
             <Calculator />
           </Route>
-          <Route path={pages.cost.url} exact={true}>
-            <Costs />
-          </Route>
           <Route path={pages.portfolios.url} exact={true}>
             <Portfolios />
+          </Route>
+          <Route path={pages.addPortfolio.url} exact={true}>
+            <EditPortfolio/>
+          </Route>
+          <Route path={pages.editPortfolio.url} exact={true}>
+            <EditPortfolio/>
           </Route>
           <Route path={pages.portfolio.url} exact={true}>
             <Portfolio />

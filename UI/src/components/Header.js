@@ -2,25 +2,30 @@
 import {useEffect, useState} from "react";
 import {getPage} from "../navigation";
 import {useRouteMatch} from "react-router";
-import {useLocation} from "react-router";
 
-export const Header = () => {
-  let location = useLocation();
+export const Header = ({children, title = null}) => {
   let routeMatch = useRouteMatch();
   const [page, setPage] = useState({});
-  
-  useEffect(() =>{
-    let newPage = getPage(routeMatch.path);
-    setPage(newPage)
-  }, [routeMatch])
-  
+
+  useEffect(() => {
+    if (title !== null) {
+      setPage({ title })
+    } else {
+      let newPage = getPage(routeMatch.path);
+      setPage(newPage)
+    }
+  }, [routeMatch, title])
+
   return (
     <IonHeader>
       <IonToolbar>
         <IonButtons slot="start">
-          <IonMenuButton />
+          <IonMenuButton/>
         </IonButtons>
         <IonTitle>{page?.title}</IonTitle>
+        <IonButtons slot="primary">
+          {children}
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
   )
