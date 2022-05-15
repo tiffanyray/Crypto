@@ -18,7 +18,7 @@ namespace Persistence.Concrete
         
         public async Task<IEnumerable<Portfolio>> GetAllAsync()
         {
-            return await _context.Portfolios.AsNoTracking().ToListAsync();
+            return await _context.Portfolios.AsNoTracking().Include(x => x.Crypto).ToListAsync();
         }
 
         public async Task<IEnumerable<Portfolio>> GetAllByUserIDAsync(string userId)

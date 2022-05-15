@@ -31,7 +31,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("one")]
+        [Route("one/{portfolioId}")]
         [ProducesResponseType(typeof(PortfolioResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<ActionResult<PortfolioResponse>> GetOne(int portfolioId)

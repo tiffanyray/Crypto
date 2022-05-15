@@ -1,6 +1,7 @@
 ﻿import axios from "axios";
 import {toast} from "react-toastify";
 import {Portfolios} from "./Portfolios";
+import {Cryptos} from "./Cryptos";
 
 axios.defaults.baseURL = "https://localhost:5001/api";
 
@@ -36,5 +37,6 @@ export const requests = {
 }
 
 export const agent = {
-  portfolios: Portfolios
+  portfolios: Portfolios,
+  cryptos: Cryptos
 }

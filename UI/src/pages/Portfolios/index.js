@@ -41,7 +41,7 @@ export const Portfolios = () => {
         <IonRouterLink routerLink={pages.portfolio.link + portfolio.id}>
           <IonCardHeader>
             <IonCardTitle>{portfolio.name}</IonCardTitle>
-            <IonCardSubtitle>{portfolio.crypto} - {portfolio.total}</IonCardSubtitle>
+            <IonCardSubtitle>{portfolio.crypto.name} - {portfolio.total}</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>{portfolio.description}</IonCardContent>
         </IonRouterLink>
