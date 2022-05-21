@@ -20,7 +20,18 @@ namespace Application.Concrete
             _userManager = userManager;
             _jwtGenerator = jwtGenerator;
         }
-        
+
+        public async Task<UserResponse> Login(User user)
+        {
+            var existingUser = await _userManager.FindByEmailAsync(user.Email);
+
+            if (existingUser == null)
+                return new UserResponse(false, "Cannot find user.");
+            
+            //TODO: Add password validation... return user object with token
+            return new UserResponse(true);
+        }
+
         public async Task<UserResponse> Register(User user)
         {
             if (await _userRepository.UserExistsByEmail(user.Email))
@@ -37,6 +48,11 @@ namespace Application.Concrete
             }
 
             return new UserResponse(false);
+        }
+
+        public async Task<bool> UsernameExists(string email)
+        {
+            return await _userRepository.UserExistsByEmail(email);
         }
     }
 }
