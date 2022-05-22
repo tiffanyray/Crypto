@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Extensions;
 using Application.Abstract;
 using Application.Concrete;
+using Application.Security;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -78,6 +79,11 @@ namespace API
 
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

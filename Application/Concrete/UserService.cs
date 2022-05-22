@@ -39,6 +39,7 @@ namespace Application.Concrete
 
             if (await _userRepository.UserExistsByUsername(user.UserName))
                 return new UserResponse(false, "Username already taken. Please try a different username.");
+            user.UserName = user.Email;
 
             var results = await _userManager.CreateAsync(user);
             if (results.Succeeded)

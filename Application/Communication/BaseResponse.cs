@@ -24,7 +24,7 @@ namespace Application.Communication
 
         protected BaseResponse(bool success, string message)
         {
-            Success = false;
+            Success = success;
             Message = message;
             Resource = default;
         }

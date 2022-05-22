@@ -21,6 +21,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         [AllowAnonymous]
         public async Task<ActionResult<UserResponse>> Login(UserLoginRequest request)
         {
@@ -33,6 +34,9 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
 
+        [HttpPost]
+        [Route("register")]
+        [AllowAnonymous]
         public async Task<ActionResult<UserResponse>> Register(UserRegisterRequest request)
         {
             var mapUser = _mapper.Map<UserRegisterRequest, User>(request);
@@ -43,6 +47,9 @@ namespace API.Controllers
             return Ok(mapResponse);
         }
         
+        [HttpGet]
+        [Route("emailexists")]
+        [AllowAnonymous]
         public async Task<ActionResult<bool>> EmailExists(string email)
         {
             return Ok(await _userService.UsernameExists(email));

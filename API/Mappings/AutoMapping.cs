@@ -22,6 +22,10 @@ namespace API.Mappings
             CreateMap<CryptoRequest, Crypto>();
             CreateMap<Crypto, CryptoResponse>();
             CreateMap<IEnumerable<Crypto>, List<CryptoResponse>>();
+
+            CreateMap<UserLoginRequest, User>();
+            CreateMap<UserRegisterRequest, User>();
+            CreateMap<User, UserResponse>();
         }
     }
 }
